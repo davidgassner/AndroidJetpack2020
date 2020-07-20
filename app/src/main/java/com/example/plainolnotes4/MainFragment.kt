@@ -5,9 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.plainolnotes4.databinding.MainFragmentBinding
@@ -46,6 +48,9 @@ class MainFragment : Fragment(),
 
     override fun onItemClick(noteId: Int) {
         Log.i(TAG, "onItemClick: received note id $noteId")
+        val bundle = bundleOf(NOTE_ID_KEY to noteId)
+        NavHostFragment.findNavController(this)
+            .navigate(R.id.action_edit_note, bundle)
     }
 
 }
