@@ -9,5 +9,14 @@
         android:id="@+id/mainFragment"
         android:name="com.example.plainolnotes4.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_edit_note"
+            app:destination="@id/editorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editorFragment"
+        android:name="com.example.plainolnotes4.EditorFragment"
+        android:label="editor_fragment"
+        tools:layout="@layout/editor_fragment" />
 </navigation>
