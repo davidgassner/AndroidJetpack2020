@@ -5,6 +5,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.plainolnotes4.data.AppDatabase
 import com.example.plainolnotes4.data.NoteDao
+import com.example.plainolnotes4.data.NoteEntity
 import com.example.plainolnotes4.data.SampleDataProvider
 import org.junit.After
 
@@ -34,6 +35,15 @@ class DatabaseTest {
         dao.insertAll(SampleDataProvider.getNotes())
         val count = dao.getCount()
         assertEquals(count, SampleDataProvider.getNotes().size)
+    }
+
+    @Test
+    fun insertNote() {
+        val note = NoteEntity()
+        note.text = "some text"
+        dao.insertNote(note)
+        val savedNote = dao.getNoteById(1)
+        assertEquals(savedNote?.id ?: 0, 1)
     }
 
     @After
