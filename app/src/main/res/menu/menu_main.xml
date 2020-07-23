@@ -5,4 +5,7 @@
     <item
         android:id="@+id/action_sample_data"
         android:title="@string/add_sample_data" />
+    <item
+        android:id="@+id/action_delete_all"
+        android:title="@string/delete_all_notes" />
 </menu>

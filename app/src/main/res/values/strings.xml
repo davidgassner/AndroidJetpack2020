@@ -4,4 +4,5 @@
     <string name="enter_note">Enter note</string>
     <string name="add_sample_data">Add sample data</string>
     <string name="delete">Delete</string>
+    <string name="delete_all_notes">Delete all notes</string>
 </resources>
