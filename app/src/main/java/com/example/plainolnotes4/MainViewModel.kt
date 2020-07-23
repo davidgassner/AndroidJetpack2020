@@ -2,8 +2,6 @@ package com.example.plainolnotes4
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.plainolnotes4.data.AppDatabase
 import com.example.plainolnotes4.data.NoteEntity
@@ -24,6 +22,15 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                 database?.noteDao()?.insertAll(sampleNotes)
             }
         }
+    }
+
+    fun deleteNotes(selectedNotes: List<NoteEntity>) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                database?.noteDao()?.deleteNotes(selectedNotes)
+            }
+        }
+
     }
 
 }
