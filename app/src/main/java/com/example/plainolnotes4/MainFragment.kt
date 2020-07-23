@@ -39,7 +39,7 @@ class MainFragment : Fragment(),
             addItemDecoration(divider)
         }
 
-        viewModel.notesList.observe(viewLifecycleOwner, Observer {
+        viewModel.notesList?.observe(viewLifecycleOwner, Observer {
             Log.i("noteLogging", it.toString())
             adapter = NotesListAdapter(it, this@MainFragment)
             binding.recyclerView.adapter = adapter
@@ -62,7 +62,8 @@ class MainFragment : Fragment(),
     }
 
     private fun addSampleData(): Boolean {
-        TODO("Not yet implemented")
+        viewModel.addSampleData()
+        return true
     }
 
     override fun onItemClick(noteId: Int) {
