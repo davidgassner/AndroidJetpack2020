@@ -9,8 +9,9 @@ import com.example.plainolnotes4.databinding.ListItemBinding
 
 class NotesListAdapter(private val notesList: List<NoteEntity>,
     private val listener: ListItemListener) :
-
     RecyclerView.Adapter<NotesListAdapter.ViewHolder>() {
+
+    val selectedNotes = arrayListOf<NoteEntity>()
 
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -32,10 +33,28 @@ class NotesListAdapter(private val notesList: List<NoteEntity>,
             root.setOnClickListener{
                 listener.onItemClick(note.id)
             }
+            fab.setOnClickListener{
+                if (selectedNotes.contains(note)) {
+                    selectedNotes.remove(note)
+                    fab.setImageResource(R.drawable.ic_note)
+                } else {
+                    selectedNotes.add(note)
+                    fab.setImageResource(R.drawable.ic_check)
+                }
+                listener.onItemSelectionChanged()
+            }
+            fab.setImageResource(
+                if (selectedNotes.contains(note)) {
+                    R.drawable.ic_check
+                } else {
+                    R.drawable.ic_note
+                }
+            )
         }
     }
 
     interface ListItemListener {
         fun onItemClick(noteId: Int)
+        fun onItemSelectionChanged()
     }
 }
