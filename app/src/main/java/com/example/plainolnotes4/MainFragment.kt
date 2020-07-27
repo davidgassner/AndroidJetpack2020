@@ -30,6 +30,8 @@ class MainFragment : Fragment(),
             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
         setHasOptionsMenu(true)
 
+        requireActivity().title = getString(R.string.app_name)
+
         binding = MainFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
@@ -47,6 +49,10 @@ class MainFragment : Fragment(),
             binding.recyclerView.adapter = adapter
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         })
+
+        binding.floatingActionButton.setOnClickListener{
+            editNote(NEW_NOTE_ID)
+        }
 
         return binding.root
     }
@@ -92,7 +98,7 @@ class MainFragment : Fragment(),
         return true
     }
 
-    override fun onItemClick(noteId: Int) {
+    override fun editNote(noteId: Int) {
         Log.i(TAG, "onItemClick: received note id $noteId")
         val action = MainFragmentDirections.actionEditNote(noteId)
         findNavController().navigate(action)
